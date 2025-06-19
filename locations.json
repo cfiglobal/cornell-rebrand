@@ -1,0 +1,76 @@
+{
+  "locations": [
+    {
+      "id": 1,
+      "name": "MTQ Engine Systems - Adelaide",
+      "address": "7-9 Opala Street. Regency Park, SA 5010",
+      "phone": "08 8445 3666",
+      "email": "adelaide.sales@mtqes.com.au",
+      "coordinates": [-34.850551, 138.567089]
+    },
+    {
+      "id": 2,
+      "name": "MTQ Engine Systems - Brisbane", 
+      "address": "111 Beenleigh Road, Acacia Ridge, QLD 4110",
+      "phone": "07 3723 4400",
+      "email": "brisbane.sales@mtqes.com.au",
+      "coordinates": [-27.578279, 153.013824]
+    },
+    {
+      "id": 3,
+      "name": "MTQ Engine Systems - Dandenong",
+      "address": "240-244 Hammond Rd, Dandenong, VIC 3175",
+      "phone": "03 8346 9800", 
+      "email": "dandenong.sales@mtqes.com.au",
+      "coordinates": [-38.018503, 145.204501]
+    },
+    {
+      "id": 4,
+      "name": "MTQ Engine Systems - Geebung",
+      "address": "140 Robinson Road East, Geebung, QLD 4034",
+      "phone": "07 3216 5866",
+      "email": "geebung.sales@mtqes.com.au", 
+      "coordinates": [-27.370540, 153.054012]
+    },
+    {
+      "id": 5,
+      "name": "MTQ Engine Systems - Laverton",
+      "address": "1 Westside Drive, Laverton North, VIC 3026",
+      "phone": "03 8346 9888",
+      "email": "melbourne.sales@mtqes.com.au",
+      "coordinates": [-37.818326, 144.819365]
+    },
+    {
+      "id": 6,
+      "name": "MTQ Engine Systems - Perth",
+      "address": "41 Banksia Road Welshpool, WA 6106", 
+      "phone": "08 9203 1000",
+      "email": "perth.sales@mtqes.com.au",
+      "coordinates": [-31.9947206, 115.9639515]
+    },
+    {
+      "id": 7,
+      "name": "MTQ Engine Systems - Rockhampton",
+      "address": "Unit 1/274 Alexandra St, Nth Rockhampton, QLD 4701",
+      "phone": "07 4932 8999",
+      "email": "rockhampton.sales@mtqes.com.au",
+      "coordinates": [-23.3342433, 150.5031094]
+    },
+    {
+      "id": 8,
+      "name": "MTQ Engine Systems - Sunshine",
+      "address": "19-21 Technology Drive, Sunshine West, VIC 3020",
+      "phone": "03 9267 8800",
+      "email": "sunshine.sales@mtqes.com.au",
+      "coordinates": [-37.8158912, 144.8220062]
+    },
+    {
+      "id": 9,
+      "name": "MTQ Engine Systems - Sydney",
+      "address": "1018-1022 Canley Vale Rd, Wetherill Park, NSW 2164",
+      "phone": "02 8788 2555",
+      "email": "sydney.sales@mtqes.com.au",
+      "coordinates": [-33.8497398, 150.895521]
+    }
+  ]
+} 
