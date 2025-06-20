@@ -37,6 +37,9 @@ body {
 	position: relative;
 	width: 100%;
 	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .hero-section::before {
@@ -68,7 +71,7 @@ body {
 
 .hero-section header {
 	margin-top: 0;
-	padding-top: 20px;
+	padding-top: 0;
 }
 
 .hero-section::after {
