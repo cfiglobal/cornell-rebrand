@@ -346,10 +346,6 @@ body {
 	width: auto;
 }
 
-.brand-carousel.paused {
-	/* Class for pausing via JavaScript */
-}
-
 /* Original individual brand logo sizing - commented for carousel version
 .brand-logos img[src*="borgwarner"] {
 	height: calc(18px * var(--brand-logo-scale));
