@@ -16,7 +16,7 @@
       <section class="announcement">
         <h1 class="">Cornell Diesel Systems is now MTQ Engine Systems</h1>
         <p>
-          We are excited to announce the consolidation of Cornell Diesel Systems with MTQ,
+          We are excited to announce the consolidation of Cornell Diesel Systems with MTQ Engine Systems,
           combining our strengths to create a <strong>One Stop Shop</strong> for all your Diesel Fuel Injection, 
           Turbocharger, and Performance sales & service solutions.
         </p>
@@ -86,9 +86,42 @@
 
   <footer>MTQ Engine Systems - 2025 &copy; All Rights Reserved</footer>
 
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    ↑
+  </button>
+
   <!-- Leaflet CSS and JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/map.js"></script>
+
+  <!-- Back to Top Button Script -->
+  <script>
+    // Back to top button functionality
+    const backToTopButton = document.getElementById('backToTop');
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Show button when user has scrolled down 70% of the page
+      if (scrollTop > (documentHeight - windowHeight) * 0.7) {
+        backToTopButton.classList.add('show');
+      } else {
+        backToTopButton.classList.remove('show');
+      }
+    });
+    
+    // Smooth scroll to top when button is clicked
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
 </body>
 </html>
