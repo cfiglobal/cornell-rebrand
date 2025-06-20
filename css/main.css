@@ -2,6 +2,21 @@
 	--mtq-yellow: #F8C014;
 	--cornell-blue: #000080;
 	--brand-logo-scale: 1.6;
+	--mobile-brand-logo-scale: 0.80;
+	
+	/* Individual brand base sizes (in pixels) */
+	--borgwarner-size: 27px;
+	--bosch-size: 48px;
+	--continental-size: 35px;
+	--delphi-size: 35px;
+	--denso-size: 40px;
+	--garrett-size: 40px;
+	--holset-size: 42px;
+	--ihi-size: 34px;
+	--mitsubishi-size: 38px;
+	--stanadyne-size: 45px;
+	--yanmar-size: 45px;
+	--zexel-size: 40px;
 }
 
 
@@ -300,51 +315,51 @@ body {
 
 /* Carousel individual brand logo sizing */
 .brand-carousel img[src*="borgwarner"] {
-	height: calc(18px * var(--brand-logo-scale));
+	height: calc(var(--borgwarner-size) * var(--brand-logo-scale));
 }
 
 .brand-carousel img[src*="bosch"] {
-	height: calc(45px * var(--brand-logo-scale));
+	height: calc(var(--bosch-size) * var(--brand-logo-scale));
 }
 
 .brand-carousel img[src*="continental"] {
-	height: calc(35px * var(--brand-logo-scale));
+	height: calc(var(--continental-size) * var(--brand-logo-scale));
 }
 
 .brand-carousel img[src*="delphi"] {
-	height: calc(47px * var(--brand-logo-scale));
+	height: calc(var(--delphi-size) * var(--brand-logo-scale));
 }
 
 .brand-carousel img[src*="denso"] {
-	height: calc(40px * var(--brand-logo-scale));
+	height: calc(var(--denso-size) * var(--brand-logo-scale));
 }
 
 .brand-carousel img[src*="garrett"] {
-	height: calc(40px * var(--brand-logo-scale));
+	height: calc(var(--garrett-size) * var(--brand-logo-scale));
 }
 
 .brand-carousel img[src*="holset"] {
-	height: calc(52px * var(--brand-logo-scale));
+	height: calc(var(--holset-size) * var(--brand-logo-scale));
 }
 
 .brand-carousel img[src*="ihi"] {
-	height: calc(36px * var(--brand-logo-scale));
+	height: calc(var(--ihi-size) * var(--brand-logo-scale));
 }
 
 .brand-carousel img[src*="mitsubishi"] {
-	height: calc(42px * var(--brand-logo-scale));
+	height: calc(var(--mitsubishi-size) * var(--brand-logo-scale));
 }
 
 .brand-carousel img[src*="stanadyne"] {
-	height: calc(45px * var(--brand-logo-scale));
+	height: calc(var(--stanadyne-size) * var(--brand-logo-scale));
 }
 
 .brand-carousel img[src*="yanmar"] {
-	height: calc(45px * var(--brand-logo-scale));
+	height: calc(var(--yanmar-size) * var(--brand-logo-scale));
 }
 
 .brand-carousel img[src*="zexel"] {
-	height: calc(40px * var(--brand-logo-scale));
+	height: calc(var(--zexel-size) * var(--brand-logo-scale));
 }
 
 /* Large screen font adjustments */
@@ -462,51 +477,51 @@ body {
 	}
 
 	.brand-carousel img[src*="borgwarner"] {
-		height: calc(14px * var(--brand-logo-scale));
+		height: calc(var(--borgwarner-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.brand-carousel img[src*="bosch"] {
-		height: calc(35px * var(--brand-logo-scale));
+		height: calc(var(--bosch-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.brand-carousel img[src*="continental"] {
-		height: calc(28px * var(--brand-logo-scale));
+		height: calc(var(--continental-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.brand-carousel img[src*="delphi"] {
-		height: calc(37px * var(--brand-logo-scale));
+		height: calc(var(--delphi-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.brand-carousel img[src*="denso"] {
-		height: calc(32px * var(--brand-logo-scale));
+		height: calc(var(--denso-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.brand-carousel img[src*="garrett"] {
-		height: calc(32px * var(--brand-logo-scale));
+		height: calc(var(--garrett-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.brand-carousel img[src*="holset"] {
-		height: calc(42px * var(--brand-logo-scale));
+		height: calc(var(--holset-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.brand-carousel img[src*="ihi"] {
-		height: calc(29px * var(--brand-logo-scale));
+		height: calc(var(--ihi-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.brand-carousel img[src*="mitsubishi"] {
-		height: calc(34px * var(--brand-logo-scale));
+		height: calc(var(--mitsubishi-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.brand-carousel img[src*="stanadyne"] {
-		height: calc(36px * var(--brand-logo-scale));
+		height: calc(var(--stanadyne-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.brand-carousel img[src*="yanmar"] {
-		height: calc(36px * var(--brand-logo-scale));
+		height: calc(var(--yanmar-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.brand-carousel img[src*="zexel"] {
-		height: calc(32px * var(--brand-logo-scale));
+		height: calc(var(--zexel-size) * var(--brand-logo-scale) * var(--mobile-brand-logo-scale));
 	}
 
 	.hero-section::after {

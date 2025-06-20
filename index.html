@@ -57,7 +57,7 @@
           <img src="assets/brands/borgwarner.svg" alt="BorgWarner" />
           <img src="assets/brands/bosch.svg" alt="Bosch" />
           <img src="assets/brands/continental.svg" alt="Continental" />
-          <img src="assets/brands/delphi-red.png" alt="Delphi" />
+          <img src="assets/brands/delphi.svg" alt="Delphi" />
           <img src="assets/brands/denso.svg" alt="Denso" />
           <img src="assets/brands/garrett.svg" alt="Garrett" />
           <img src="assets/brands/holset.svg" alt="Holset" />
@@ -70,7 +70,7 @@
           <img src="assets/brands/borgwarner.svg" alt="BorgWarner" />
           <img src="assets/brands/bosch.svg" alt="Bosch" />
           <img src="assets/brands/continental.svg" alt="Continental" />
-          <img src="assets/brands/delphi-red.png" alt="Delphi" />
+          <img src="assets/brands/delphi.svg" alt="Delphi" />
           <img src="assets/brands/denso.svg" alt="Denso" />
           <img src="assets/brands/garrett.svg" alt="Garrett" />
           <img src="assets/brands/holset.svg" alt="Holset" />
@@ -165,10 +165,13 @@
     });
   </script>
 
-  <!-- Brand Carousel Script -->
+  <!-- Optimized Brand Carousel Script -->
   <script>
     class BrandCarousel {
       constructor() {
+        // Configuration variables
+        this.pauseOnScroll = false; // Set to true to enable pause during scroll
+        
         this.carousel = document.querySelector('.brand-carousel');
         this.container = document.querySelector('.brand-logos');
         this.images = Array.from(this.carousel.querySelectorAll('img'));
@@ -179,48 +182,106 @@
         this.gap = window.innerWidth <= 768 ? 40 : 60;
         this.speed = 0.8; // pixels per frame
         this.isPaused = false;
+        this.isVisible = true;
+        this.animationId = null;
+        
+        // Performance optimization flags
+        this.isResizing = false;
+        this.resizeTimeout = null;
         
         this.init();
       }
       
       init() {
+        // Add CSS optimization
+        this.carousel.style.willChange = 'transform';
+        this.carousel.style.backfaceVisibility = 'hidden';
+        this.carousel.style.perspective = '1000px';
+        
         // Calculate image widths after they load
         this.calculateDimensions();
         
         // Start the animation
         this.animate();
         
-        // Add hover events
-        //this.container.addEventListener('mouseenter', () => this.pause());
-        //this.container.addEventListener('mouseleave', () => this.resume());
+        // Optimized resize handler with debouncing
+        window.addEventListener('resize', this.debounce(() => {
+          this.handleResize();
+        }, 150));
         
-        // Handle window resize
-        window.addEventListener('resize', () => {
-          this.gap = window.innerWidth <= 768 ? 40 : 60;
+        // Pause animation when page is not visible (performance optimization)
+        document.addEventListener('visibilitychange', () => {
+          this.isVisible = !document.hidden;
+          if (!this.isVisible && this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+          } else if (this.isVisible && !this.animationId) {
+            this.animate();
+          }
+        });
+        
+        // Pause during scroll for performance (configurable)
+        if (this.pauseOnScroll) {
+          let scrollTimeout;
+          window.addEventListener('scroll', () => {
+            if (!this.isResizing) {
+              this.isPaused = true;
+              clearTimeout(scrollTimeout);
+              scrollTimeout = setTimeout(() => {
+                this.isPaused = false;
+              }, 100);
+            }
+          }, { passive: true });
+        }
+      }
+      
+      debounce(func, wait) {
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(this.resizeTimeout);
+            func(...args);
+          };
+          clearTimeout(this.resizeTimeout);
+          this.resizeTimeout = setTimeout(later, wait);
+        }.bind(this);
+      }
+      
+      handleResize() {
+        this.isResizing = true;
+        this.gap = window.innerWidth <= 768 ? 40 : 60;
+        
+        // Use RAF for resize calculations to avoid layout thrashing
+        requestAnimationFrame(() => {
           this.calculateDimensions();
+          setTimeout(() => {
+            this.isResizing = false;
+          }, 200);
         });
       }
       
       calculateDimensions() {
-        // Wait for images to load
-        Promise.all(this.images.slice(0, this.totalImages).map(img => {
-          if (img.complete) return Promise.resolve();
-          return new Promise(resolve => {
-            img.onload = resolve;
-            img.onerror = resolve;
+        // Batch DOM reads to avoid layout thrashing
+        requestAnimationFrame(() => {
+          // Wait for images to load
+          Promise.all(this.images.slice(0, this.totalImages).map(img => {
+            if (img.complete) return Promise.resolve();
+            return new Promise(resolve => {
+              img.onload = resolve;
+              img.onerror = resolve;
+            });
+          })).then(() => {
+            // Calculate the width of one complete set in a single batch
+            let totalWidth = 0;
+            for (let i = 0; i < this.totalImages; i++) {
+              totalWidth += this.images[i].offsetWidth + this.gap;
+            }
+            this.oneSetWidth = totalWidth;
           });
-        })).then(() => {
-          // Calculate the width of one complete set
-          let totalWidth = 0;
-          for (let i = 0; i < this.totalImages; i++) {
-            totalWidth += this.images[i].offsetWidth + this.gap;
-          }
-          this.oneSetWidth = totalWidth;
         });
       }
       
       animate() {
-        if (!this.isPaused && this.oneSetWidth) {
+        if (this.isVisible && !this.isPaused && this.oneSetWidth) {
           this.currentPosition += this.speed;
           
           // Reset position when we've moved one complete set
@@ -228,10 +289,11 @@
             this.currentPosition = 0;
           }
           
-          this.carousel.style.transform = `translateX(-${this.currentPosition}px)`;
+          // Use transform3d for hardware acceleration
+          this.carousel.style.transform = `translate3d(-${this.currentPosition}px, 0, 0)`;
         }
         
-        requestAnimationFrame(() => this.animate());
+        this.animationId = requestAnimationFrame(() => this.animate());
       }
       
       pause() {
