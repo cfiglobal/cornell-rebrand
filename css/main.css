@@ -226,6 +226,21 @@ body {
 
 /* Responsive tweaks */
 @media (max-width: 768px) {
+	.hero-section {
+		min-height: 100vh;
+		align-items: flex-start;
+		padding-top: 60px;
+	}
+
+	.hero-section .container {
+		padding: 20px;
+	}
+
+	.main-logo {
+		width: 90%;
+		max-width: 400px;
+	}
+
 	.announcement h1 {
 		font-size: 1.5rem;
 	}
@@ -309,8 +324,34 @@ body {
 	}
 
 	@media (max-width: 480px) {
+		.hero-section {
+			padding-top: 40px;
+			min-height: 100vh;
+		}
+
+		.main-logo {
+			width: 95%;
+			max-width: 300px;
+		}
+
+		.announcement h1 {
+			font-size: 1.3rem;
+		}
+
+		.announcement p {
+			font-size: 0.9rem;
+			padding: 0 5px;
+		}
+
+		.links {
+			gap: 15px;
+			flex-direction: column;
+			align-items: center;
+		}
+
 		.btn-link {
-			width: 100% !important;
+			width: 90% !important;
+			max-width: 280px;
 		}
 		
 		.hero-section::after {
