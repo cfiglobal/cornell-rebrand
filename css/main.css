@@ -939,3 +939,37 @@ footer {
 	position: relative;
 	top: 0.5px;
 }
+
+/* Map interaction overlay */
+.map-interaction-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	pointer-events: none;
+	animation: fadeInOut 2s ease-in-out;
+}
+
+.overlay-content {
+	background: rgba(0, 0, 0, 0.8);
+	color: white;
+	padding: 12px 20px;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 500;
+	text-align: center;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeInOut {
+	0% { opacity: 0; }
+	15% { opacity: 1; }
+	85% { opacity: 1; }
+	100% { opacity: 0; }
+}

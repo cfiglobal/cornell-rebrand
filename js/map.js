@@ -17,12 +17,184 @@ function initializeMap() {
     const initialZoom = isMobile ? 4 : 5;
     
     // Center map on Australia
-    map = L.map('map').setView([-25.2744, 133.7751], initialZoom);
+    map = L.map('map', {
+        scrollWheelZoom: false, // Disable default scroll wheel zoom
+        dragging: !isMobile,    // Disable dragging on mobile initially
+        tap: !isMobile         // Disable tap on mobile initially
+    }).setView([-25.2744, 133.7751], initialZoom);
     
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
+    
+    // Disable context menu on map
+    const mapContainer = document.getElementById('map');
+    mapContainer.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        return false;
+    });
+    
+    // Setup scroll behavior and overlays
+    setupMapInteraction();
+}
+
+// Setup map interaction behavior
+function setupMapInteraction() {
+    const isMobile = window.innerWidth <= 768;
+    const mapContainer = document.getElementById('map');
+    
+    if (isMobile) {
+        // Mobile: Setup two-finger interaction
+        setupMobileInteraction(mapContainer);
+    } else {
+        // Desktop: Setup Ctrl+scroll interaction
+        setupDesktopInteraction(mapContainer);
+    }
+}
+
+// Setup mobile two-finger interaction
+function setupMobileInteraction(mapContainer) {
+    let overlay = null;
+    
+    // Create overlay message
+    function showOverlay(message) {
+        if (overlay) return;
+        
+        overlay = document.createElement('div');
+        overlay.className = 'map-interaction-overlay';
+        overlay.innerHTML = `
+            <div class="overlay-content">
+                <p>${message}</p>
+            </div>
+        `;
+        mapContainer.appendChild(overlay);
+        
+        // Auto-hide after 2 seconds
+        setTimeout(() => {
+            if (overlay) {
+                overlay.remove();
+                overlay = null;
+            }
+        }, 2000);
+    }
+    
+    // Handle touch events
+    let touchCount = 0;
+    
+    mapContainer.addEventListener('touchstart', (e) => {
+        touchCount = e.touches.length;
+        
+        if (touchCount === 1) {
+            showOverlay('Use two fingers to move the map');
+            e.preventDefault();
+        } else if (touchCount === 2) {
+            // Enable map interaction for two fingers
+            map.dragging.enable();
+            map.scrollWheelZoom.enable();
+            map.doubleClickZoom.enable();
+            if (overlay) {
+                overlay.remove();
+                overlay = null;
+            }
+        }
+    });
+    
+    mapContainer.addEventListener('touchend', (e) => {
+        if (e.touches.length === 0) {
+            // Disable interaction when no fingers on screen
+            setTimeout(() => {
+                map.dragging.disable();
+                map.scrollWheelZoom.disable();
+            }, 100);
+        }
+    });
+}
+
+// Setup desktop Ctrl+scroll interaction
+function setupDesktopInteraction(mapContainer) {
+    let overlay = null;
+    let isCtrlPressed = false;
+    let isHoveringMap = false;
+    
+    // Create overlay message
+    function showOverlay() {
+        if (overlay) return;
+        
+        overlay = document.createElement('div');
+        overlay.className = 'map-interaction-overlay';
+        overlay.innerHTML = `
+            <div class="overlay-content">
+                <p>Use Ctrl + scroll to zoom the map</p>
+            </div>
+        `;
+        mapContainer.appendChild(overlay);
+        
+        // Auto-hide after 2 seconds
+        setTimeout(() => {
+            if (overlay) {
+                overlay.remove();
+                overlay = null;
+            }
+        }, 2000);
+    }
+    
+    function hideOverlay() {
+        if (overlay) {
+            overlay.remove();
+            overlay = null;
+        }
+    }
+    
+    // Track Ctrl key state globally
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Control') {
+            isCtrlPressed = true;
+            if (isHoveringMap) {
+                map.scrollWheelZoom.enable();
+                hideOverlay();
+            }
+        }
+    });
+    
+    document.addEventListener('keyup', (e) => {
+        if (e.key === 'Control') {
+            isCtrlPressed = false;
+            map.scrollWheelZoom.disable();
+        }
+    });
+    
+    // Track mouse hover state on map
+    mapContainer.addEventListener('mouseenter', () => {
+        isHoveringMap = true;
+        if (isCtrlPressed) {
+            map.scrollWheelZoom.enable();
+            hideOverlay();
+        }
+    });
+    
+    mapContainer.addEventListener('mouseleave', () => {
+        isHoveringMap = false;
+        map.scrollWheelZoom.disable();
+        hideOverlay();
+    });
+    
+    // Handle scroll events - only intercept when Ctrl is pressed
+    mapContainer.addEventListener('wheel', (e) => {
+        if (isCtrlPressed && isHoveringMap) {
+            // Allow map zoom when Ctrl is pressed and hovering map
+            return; // Let the map handle it
+        } else if (isCtrlPressed && !isHoveringMap) {
+            // Ctrl pressed but not hovering map - allow normal scroll
+            return;
+        } else if (!isCtrlPressed && isHoveringMap) {
+            // Not pressing Ctrl but hovering map - allow normal page scroll
+            // But show overlay to inform about Ctrl+scroll
+            showOverlay();
+            return; // Allow normal page scrolling
+        }
+        // Default: allow normal scrolling
+    }, { passive: false });
 }
 
 // Create custom MTQ yellow marker icon
