@@ -165,7 +165,7 @@ function selectLocation(location) {
     }
     
     // Center map on selected location
-    map.setView(location.coordinates, 10);
+    map.setView(location.coordinates, 15);
     
     // Open popup for the selected marker
     const marker = markers.find(m => 
