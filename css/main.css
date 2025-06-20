@@ -243,6 +243,17 @@ body {
 	height: calc(40px * var(--brand-logo-scale));
 }
 
+/* Large screen font adjustments */
+@media (min-width: 1440px) and (max-resolution: 150dpi) {
+	.announcement h1 {
+		font-size: 2.2rem !important;
+	}
+
+	.main-logo {
+		width: 700px;
+	}
+}
+
 /* Responsive tweaks */
 @media (max-width: 768px) {
 	.hero-section {
