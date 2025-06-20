@@ -19,6 +19,13 @@
 	--zexel-size: 40px;
 }
 
+.bold {
+	font-weight: 900;
+}
+
+.italic {
+	font-style: italic;
+}
 
 body {
     margin: 0;
