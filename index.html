@@ -40,6 +40,9 @@
         <img src="assets/logos/mtq_logo_white.svg" alt="MTQ Engine Systems Full Logo" />
       </div>
     </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
   </div>
 
   <div class="brands">
@@ -100,6 +103,7 @@
   <script>
     // Back to top button functionality
     const backToTopButton = document.getElementById('backToTop');
+    const scrollIndicator = document.getElementById('scrollIndicator');
     
     // Show/hide button based on scroll position
     window.addEventListener('scroll', () => {
@@ -107,7 +111,16 @@
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       
-      // Show button when user has scrolled down 70% of the page
+      // Hide scroll indicator when user starts scrolling
+      if (scrollTop > 50) {
+        scrollIndicator.style.opacity = '0';
+        scrollIndicator.style.visibility = 'hidden';
+      } else {
+        scrollIndicator.style.opacity = '0.8';
+        scrollIndicator.style.visibility = 'visible';
+      }
+      
+      // Show back to top button when user has scrolled down 70% of the page
       if (scrollTop > (documentHeight - windowHeight) * 0.7) {
         backToTopButton.classList.add('show');
       } else {
@@ -121,6 +134,16 @@
         top: 0,
         behavior: 'smooth'
       });
+    });
+    
+    // Scroll indicator click functionality
+    scrollIndicator.addEventListener('click', () => {
+      const brandsSection = document.querySelector('.brands');
+      if (brandsSection) {
+        brandsSection.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
     });
   </script>
 </body>
