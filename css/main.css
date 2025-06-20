@@ -369,6 +369,9 @@ body {
 	border-radius: 10px;
 	width: 230px;
 	height: 40px;
+	transition: outline-width 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+	outline: 0px solid transparent;
+	outline-offset: -1px;
 }
 
 .mtq-border {
@@ -377,6 +380,18 @@ body {
 
 .cornell-border {
 	border: 2px solid var(--cornell-blue);
+}
+
+.btn-link:hover.mtq-border {
+	outline: 2px solid var(--mtq-yellow);
+	box-shadow: 0 4px 12px rgba(248, 192, 20, 0.4);
+	transform: translateY(-3px);
+}
+
+.btn-link:hover.cornell-border {
+	outline: 2px solid var(--cornell-blue);
+	box-shadow: 0 4px 12px rgba(0, 0, 128, 0.4);
+	transform: translateY(-3px);
 }
 
 .btn-link img {
