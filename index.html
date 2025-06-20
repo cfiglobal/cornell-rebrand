@@ -196,11 +196,24 @@
     // Initialize scroll indicator as visible on page load
     scrollIndicator.classList.add('show');
     
+    // Get brands section for border pulse animation
+    const brandsSection = document.querySelector('.brands');
+    
+    // Initialize brands border pulse (start pulsing at top of page)
+    brandsSection.classList.add('pulse-border');
+    
     // Show/hide buttons based on scroll position with smooth transitions
     window.addEventListener('scroll', () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
+      
+      // Brands border pulse - only at very top of page (within 10px)
+      if (scrollTop <= 10) {
+        brandsSection.classList.add('pulse-border');
+      } else {
+        brandsSection.classList.remove('pulse-border');
+      }
       
       // Smooth fade out scroll indicator when user starts scrolling
       if (scrollTop > 100) {
