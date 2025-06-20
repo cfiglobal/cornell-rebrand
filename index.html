@@ -118,6 +118,77 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/map.js"></script>
 
+  <!-- Secret Credits Easter Egg -->
+  <script>
+    // Check for #credits hash in URL
+    function checkForCredits() {
+      if (window.location.hash === '#credits') {
+        showCreditsPopup();
+      }
+    }
+    
+    function showCreditsPopup() {
+      // Create credits popup
+      const creditsPopup = document.createElement('div');
+      creditsPopup.className = 'credits-popup';
+      creditsPopup.innerHTML = `
+        <div class="credits-content">
+          <div class="credits-header">
+            <h3>🎨 Credits</h3>
+            <button class="credits-close" aria-label="Close credits">&times;</button>
+          </div>
+          <div class="credits-body">
+            <div class="credit-item">
+              <strong>Design:</strong> Rob Kemp
+            </div>
+            <div class="credit-item">
+              <strong>Web Development:</strong> Sebastian Bertuccio
+            </div>
+            <div class="credit-footer">
+            </div>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(creditsPopup);
+      
+      // Add event listeners
+      const closeBtn = creditsPopup.querySelector('.credits-close');
+      closeBtn.addEventListener('click', closeCreditsPopup);
+      
+      // Close on background click
+      creditsPopup.addEventListener('click', (e) => {
+        if (e.target === creditsPopup) {
+          closeCreditsPopup();
+        }
+      });
+      
+      // Close on escape key
+      document.addEventListener('keydown', handleEscapeKey);
+      
+      // Remove hash from URL
+      history.replaceState(null, null, window.location.pathname);
+    }
+    
+    function closeCreditsPopup() {
+      const popup = document.querySelector('.credits-popup');
+      if (popup) {
+        popup.remove();
+        document.removeEventListener('keydown', handleEscapeKey);
+      }
+    }
+    
+    function handleEscapeKey(e) {
+      if (e.key === 'Escape') {
+        closeCreditsPopup();
+      }
+    }
+    
+    // Check on page load and hash change
+    checkForCredits();
+    window.addEventListener('hashchange', checkForCredits);
+  </script>
+
   <!-- Back to Top Button Script -->
   <script>
     // Back to top button functionality

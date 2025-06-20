@@ -1044,6 +1044,134 @@ footer {
 	color: #333;
 }
 
+/* Secret Credits Popup */
+.credits-popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+	animation: fadeIn 0.3s ease;
+}
+
+.credits-content {
+	background: white;
+	border-radius: 12px;
+	padding: 0;
+	max-width: 400px;
+	width: 90%;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	animation: slideIn 0.3s ease;
+	overflow: hidden;
+}
+
+.credits-header {
+	background: var(--mtq-yellow);
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #eee;
+}
+
+.credits-header h3 {
+	margin: 0;
+	color: #000;
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+
+.credits-close {
+	background: none;
+	border: none;
+	font-size: 24px;
+	font-weight: bold;
+	cursor: pointer;
+	color: #000;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	transition: background-color 0.2s ease;
+}
+
+.credits-close:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.credits-body {
+	padding: 25px;
+	text-align: left;
+}
+
+.credit-item {
+	margin-bottom: 15px;
+	font-size: 1rem;
+	line-height: 1.4;
+	color: #000;
+	text-align: left;
+}
+
+.credit-item strong {
+	color: #000;
+	font-weight: 600;
+}
+
+.credit-footer {
+	margin-top: 20px;
+	padding-top: 15px;
+	border-top: 1px solid #eee;
+	text-align: center;
+}
+
+.credit-footer small {
+	color: #666;
+	font-style: italic;
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes slideIn {
+	from { 
+		opacity: 0;
+		transform: scale(0.8) translateY(-20px);
+	}
+	to { 
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+}
+
+/* Mobile responsive for credits popup */
+@media (max-width: 480px) {
+	.credits-content {
+		width: 95%;
+		margin: 20px;
+	}
+	
+	.credits-header {
+		padding: 15px;
+	}
+	
+	.credits-header h3 {
+		font-size: 1.2rem;
+	}
+	
+	.credits-body {
+		padding: 20px;
+	}
+}
+
 /* Utility Classes */
 @media (max-width: 768px) {
 	.mobile-hide {
