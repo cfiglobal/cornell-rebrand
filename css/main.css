@@ -1021,6 +1021,29 @@ footer {
 	100% { opacity: 0; }
 }
 
+/* Location Links Styling */
+.location-item a,
+.marker-popup a {
+	color: var(--mtq-yellow);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.location-item a:hover,
+.marker-popup a:hover {
+	color: #e6ad12;
+	text-decoration: underline;
+}
+
+.location-item.active a {
+	color: #000;
+	font-weight: 500;
+}
+
+.location-item.active a:hover {
+	color: #333;
+}
+
 /* Utility Classes */
 @media (max-width: 768px) {
 	.mobile-hide {

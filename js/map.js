@@ -299,7 +299,7 @@ function displayLocations(filteredLocations = null) {
         locationItem.innerHTML = `
             <h4>${index + 1}. ${location.name}</h4>
             <p>${location.address}</p>
-            <p>Ph ${location.phone}</p>
+            <p>${location.phone}</p>
             <p>${location.email}</p>
             ${location.reman ? '<p><span class="reman-dot"></span><strong>APAC Remanufacturing Centre</strong></p>' : ''}
         `;
@@ -329,8 +329,8 @@ function addMarkersToMap() {
             <div class="marker-popup">
                 <h4>${location.name}</h4>
                 <p><strong>Address:</strong> ${location.address}</p>
-                <p><strong>Phone:</strong> ${location.phone}</p>
-                <p><strong>Email:</strong> ${location.email}</p>
+                <p><strong>Phone:</strong> <a href="tel:${location.phone.replace(/\s/g, '')}">${location.phone}</a></p>
+                <p><strong>Email:</strong> <a href="mailto:${location.email}">${location.email}</a></p>
                 ${location.reman ? '<p><span class="reman-dot"></span><strong>APAC Remanufacturing Centre</strong></p>' : ''}
             </div>
         `;
