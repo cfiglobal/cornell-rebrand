@@ -657,13 +657,20 @@ footer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 18px;
-	font-weight: bold;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 	opacity: 0;
 	visibility: hidden;
 	transition: all 0.3s ease;
 	z-index: 1000;
+}
+
+.back-to-top::after {
+	content: '';
+	width: 12px;
+	height: 12px;
+	border-right: 2px solid #000;
+	border-top: 2px solid #000;
+	transform: rotate(-45deg) translate(-1px, 1px);
 }
 
 .back-to-top.show {
