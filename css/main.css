@@ -1,7 +1,7 @@
 :root {
 	--mtq-yellow: #F8C014;
 	--cornell-blue: #000080;
-	--brand-logo-scale: 1;
+	--brand-logo-scale: 1.6;
 }
 
 
@@ -205,6 +205,7 @@ body {
 	margin-bottom: 15px;
 }
 
+/* Original brand logos layout - commented for carousel version
 .brand-logos {
 	display: flex;
 	flex-wrap: wrap;
@@ -217,10 +218,37 @@ body {
 
 .brand-logos img {
 	width: auto;
-	/*max-width: 120px;*/
+	max-width: 120px;
+}
+*/
+
+/* JavaScript Carousel Brand Logos */
+.brand-logos {
+	overflow: hidden;
+	width: 100%;
+	position: relative;
+	margin-top: 20px;
+	padding: 20px 0;
 }
 
-/* Individual brand logo sizing adjustments */
+.brand-carousel {
+	display: flex;
+	align-items: center;
+	gap: 60px;
+	width: fit-content;
+	transition: none;
+}
+
+.brand-carousel img {
+	flex-shrink: 0;
+	width: auto;
+}
+
+.brand-carousel.paused {
+	/* Class for pausing via JavaScript */
+}
+
+/* Original individual brand logo sizing - commented for carousel version
 .brand-logos img[src*="borgwarner"] {
 	height: calc(18px * var(--brand-logo-scale));
 }
@@ -266,6 +294,56 @@ body {
 }
 
 .brand-logos img[src*="zexel"] {
+	height: calc(40px * var(--brand-logo-scale));
+}
+*/
+
+/* Carousel individual brand logo sizing */
+.brand-carousel img[src*="borgwarner"] {
+	height: calc(18px * var(--brand-logo-scale));
+}
+
+.brand-carousel img[src*="bosch"] {
+	height: calc(45px * var(--brand-logo-scale));
+}
+
+.brand-carousel img[src*="continental"] {
+	height: calc(35px * var(--brand-logo-scale));
+}
+
+.brand-carousel img[src*="delphi"] {
+	height: calc(47px * var(--brand-logo-scale));
+}
+
+.brand-carousel img[src*="denso"] {
+	height: calc(40px * var(--brand-logo-scale));
+}
+
+.brand-carousel img[src*="garrett"] {
+	height: calc(40px * var(--brand-logo-scale));
+}
+
+.brand-carousel img[src*="holset"] {
+	height: calc(52px * var(--brand-logo-scale));
+}
+
+.brand-carousel img[src*="ihi"] {
+	height: calc(36px * var(--brand-logo-scale));
+}
+
+.brand-carousel img[src*="mitsubishi"] {
+	height: calc(42px * var(--brand-logo-scale));
+}
+
+.brand-carousel img[src*="stanadyne"] {
+	height: calc(45px * var(--brand-logo-scale));
+}
+
+.brand-carousel img[src*="yanmar"] {
+	height: calc(45px * var(--brand-logo-scale));
+}
+
+.brand-carousel img[src*="zexel"] {
 	height: calc(40px * var(--brand-logo-scale));
 }
 
@@ -322,13 +400,13 @@ body {
 		height: auto;
 	}
 
+	/* Original mobile brand logos - commented for carousel version
 	.brand-logos img {
 		height: 25px;
 		width: auto;
 		max-width: 80px;
 	}
 
-	/* Mobile individual brand sizing adjustments */
 	.brand-logos img[src*="borgwarner"] {
 		height: calc(30px * var(--brand-logo-scale));
 	}
@@ -375,6 +453,60 @@ body {
 
 	.brand-logos img[src*="zexel"] {
 		height: calc(25px * var(--brand-logo-scale));
+	}
+	*/
+
+	/* Mobile carousel adjustments */
+	.brand-carousel {
+		gap: 40px;
+	}
+
+	.brand-carousel img[src*="borgwarner"] {
+		height: calc(14px * var(--brand-logo-scale));
+	}
+
+	.brand-carousel img[src*="bosch"] {
+		height: calc(35px * var(--brand-logo-scale));
+	}
+
+	.brand-carousel img[src*="continental"] {
+		height: calc(28px * var(--brand-logo-scale));
+	}
+
+	.brand-carousel img[src*="delphi"] {
+		height: calc(37px * var(--brand-logo-scale));
+	}
+
+	.brand-carousel img[src*="denso"] {
+		height: calc(32px * var(--brand-logo-scale));
+	}
+
+	.brand-carousel img[src*="garrett"] {
+		height: calc(32px * var(--brand-logo-scale));
+	}
+
+	.brand-carousel img[src*="holset"] {
+		height: calc(42px * var(--brand-logo-scale));
+	}
+
+	.brand-carousel img[src*="ihi"] {
+		height: calc(29px * var(--brand-logo-scale));
+	}
+
+	.brand-carousel img[src*="mitsubishi"] {
+		height: calc(34px * var(--brand-logo-scale));
+	}
+
+	.brand-carousel img[src*="stanadyne"] {
+		height: calc(36px * var(--brand-logo-scale));
+	}
+
+	.brand-carousel img[src*="yanmar"] {
+		height: calc(36px * var(--brand-logo-scale));
+	}
+
+	.brand-carousel img[src*="zexel"] {
+		height: calc(32px * var(--brand-logo-scale));
 	}
 
 	.hero-section::after {

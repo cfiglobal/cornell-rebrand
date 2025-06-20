@@ -21,7 +21,7 @@
           Turbocharger, and Performance sales & service solutions.
         </p>
         <p>
-            Same Great Service and Familiar Team
+            "Same Great Service and Familiar Team"
         </p>
         <p>
           This represents more than just a name change, it reflects our commitment to continuous improvement, and
@@ -52,18 +52,34 @@
     <div class="container">
       <h2 class="header-text header-text-larger">HOME TO THE WORLD'S LEADING BRANDS</h2>
       <div class="brand-logos">
-        <img src="assets/brands/borgwarner.svg" alt="BorgWarner" />
-        <img src="assets/brands/bosch.svg" alt="Bosch" />
-        <img src="assets/brands/continental.svg" alt="Continental" />
-        <img src="assets/brands/delphi-red.png" alt="Delphi" />
-        <img src="assets/brands/denso.svg" alt="Denso" />
-        <img src="assets/brands/garrett.svg" alt="Garrett" />
-        <img src="assets/brands/holset.svg" alt="Holset" />
-        <img src="assets/brands/ihi.svg" alt="IHI" />
-        <img src="assets/brands/mitsubishi.svg" alt="Mitsubishi" />
-        <img src="assets/brands/stanadyne.svg" alt="Stanadyne" />
-        <img src="assets/brands/yanmar.svg" alt="Yanmar" />
-        <img src="assets/brands/zexel.svg" alt="Zexel" />
+        <div class="brand-carousel">
+          <!-- First set of brands -->
+          <img src="assets/brands/borgwarner.svg" alt="BorgWarner" />
+          <img src="assets/brands/bosch.svg" alt="Bosch" />
+          <img src="assets/brands/continental.svg" alt="Continental" />
+          <img src="assets/brands/delphi-red.png" alt="Delphi" />
+          <img src="assets/brands/denso.svg" alt="Denso" />
+          <img src="assets/brands/garrett.svg" alt="Garrett" />
+          <img src="assets/brands/holset.svg" alt="Holset" />
+          <img src="assets/brands/ihi.svg" alt="IHI" />
+          <img src="assets/brands/mitsubishi.svg" alt="Mitsubishi" />
+          <img src="assets/brands/stanadyne.svg" alt="Stanadyne" />
+          <img src="assets/brands/yanmar.svg" alt="Yanmar" />
+          <img src="assets/brands/zexel.svg" alt="Zexel" />
+          <!-- Duplicate set for seamless loop -->
+          <img src="assets/brands/borgwarner.svg" alt="BorgWarner" />
+          <img src="assets/brands/bosch.svg" alt="Bosch" />
+          <img src="assets/brands/continental.svg" alt="Continental" />
+          <img src="assets/brands/delphi-red.png" alt="Delphi" />
+          <img src="assets/brands/denso.svg" alt="Denso" />
+          <img src="assets/brands/garrett.svg" alt="Garrett" />
+          <img src="assets/brands/holset.svg" alt="Holset" />
+          <img src="assets/brands/ihi.svg" alt="IHI" />
+          <img src="assets/brands/mitsubishi.svg" alt="Mitsubishi" />
+          <img src="assets/brands/stanadyne.svg" alt="Stanadyne" />
+          <img src="assets/brands/yanmar.svg" alt="Yanmar" />
+          <img src="assets/brands/zexel.svg" alt="Zexel" />
+        </div>
       </div>
     </div>
   </div>
@@ -146,6 +162,90 @@
           behavior: 'smooth'
         });
       }
+    });
+  </script>
+
+  <!-- Brand Carousel Script -->
+  <script>
+    class BrandCarousel {
+      constructor() {
+        this.carousel = document.querySelector('.brand-carousel');
+        this.container = document.querySelector('.brand-logos');
+        this.images = Array.from(this.carousel.querySelectorAll('img'));
+        this.totalImages = this.images.length / 2; // Half because we have duplicates
+        
+        this.currentPosition = 0;
+        this.imageWidth = 0;
+        this.gap = window.innerWidth <= 768 ? 40 : 60;
+        this.speed = 0.8; // pixels per frame
+        this.isPaused = false;
+        
+        this.init();
+      }
+      
+      init() {
+        // Calculate image widths after they load
+        this.calculateDimensions();
+        
+        // Start the animation
+        this.animate();
+        
+        // Add hover events
+        //this.container.addEventListener('mouseenter', () => this.pause());
+        //this.container.addEventListener('mouseleave', () => this.resume());
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+          this.gap = window.innerWidth <= 768 ? 40 : 60;
+          this.calculateDimensions();
+        });
+      }
+      
+      calculateDimensions() {
+        // Wait for images to load
+        Promise.all(this.images.slice(0, this.totalImages).map(img => {
+          if (img.complete) return Promise.resolve();
+          return new Promise(resolve => {
+            img.onload = resolve;
+            img.onerror = resolve;
+          });
+        })).then(() => {
+          // Calculate the width of one complete set
+          let totalWidth = 0;
+          for (let i = 0; i < this.totalImages; i++) {
+            totalWidth += this.images[i].offsetWidth + this.gap;
+          }
+          this.oneSetWidth = totalWidth;
+        });
+      }
+      
+      animate() {
+        if (!this.isPaused && this.oneSetWidth) {
+          this.currentPosition += this.speed;
+          
+          // Reset position when we've moved one complete set
+          if (this.currentPosition >= this.oneSetWidth) {
+            this.currentPosition = 0;
+          }
+          
+          this.carousel.style.transform = `translateX(-${this.currentPosition}px)`;
+        }
+        
+        requestAnimationFrame(() => this.animate());
+      }
+      
+      pause() {
+        this.isPaused = true;
+      }
+      
+      resume() {
+        this.isPaused = false;
+      }
+    }
+    
+    // Initialize carousel when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      new BrandCarousel();
     });
   </script>
 </body>
