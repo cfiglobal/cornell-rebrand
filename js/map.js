@@ -56,6 +56,8 @@ function setupMapInteraction() {
 // Setup mobile two-finger interaction
 function setupMobileInteraction(mapContainer) {
     let overlay = null;
+    let touchCount = 0;
+    let isTwoFingerInteraction = false;
     
     // Create overlay message
     function showOverlay(message) {
@@ -79,34 +81,55 @@ function setupMobileInteraction(mapContainer) {
         }, 2000);
     }
     
-    // Handle touch events
-    let touchCount = 0;
+    function hideOverlay() {
+        if (overlay) {
+            overlay.remove();
+            overlay = null;
+        }
+    }
     
+    // Handle touch events
     mapContainer.addEventListener('touchstart', (e) => {
         touchCount = e.touches.length;
         
         if (touchCount === 1) {
+            // Single finger - allow normal scrolling but show overlay
+            isTwoFingerInteraction = false;
             showOverlay('Use two fingers to move the map');
-            e.preventDefault();
+            // Don't prevent default - allow normal scrolling
         } else if (touchCount === 2) {
-            // Enable map interaction for two fingers
+            // Two fingers - enable map interaction
+            isTwoFingerInteraction = true;
             map.dragging.enable();
             map.scrollWheelZoom.enable();
             map.doubleClickZoom.enable();
-            if (overlay) {
-                overlay.remove();
-                overlay = null;
-            }
+            hideOverlay();
+            // Prevent default to stop page scrolling during map interaction
+            e.preventDefault();
         }
+    });
+    
+    mapContainer.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2 && isTwoFingerInteraction) {
+            // Two finger movement - prevent page scroll, allow map interaction
+            e.preventDefault();
+        }
+        // Single finger movement - allow normal page scrolling
     });
     
     mapContainer.addEventListener('touchend', (e) => {
         if (e.touches.length === 0) {
-            // Disable interaction when no fingers on screen
+            // All fingers lifted - disable map interaction after short delay
             setTimeout(() => {
                 map.dragging.disable();
                 map.scrollWheelZoom.disable();
+                isTwoFingerInteraction = false;
             }, 100);
+        } else if (e.touches.length === 1 && isTwoFingerInteraction) {
+            // Went from 2 fingers to 1 - disable map interaction
+            map.dragging.disable();
+            map.scrollWheelZoom.disable();
+            isTwoFingerInteraction = false;
         }
     });
 }
