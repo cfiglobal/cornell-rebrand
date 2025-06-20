@@ -15,17 +15,18 @@ body {
 }
 
 .announcement h1 {
-    font-size: 3rem !important;
-    font-weight: bold;
+    font-size: 2.75rem !important;
+    font-weight: 900;
     margin-bottom: 10px;
     margin-top: 0px;
 }
 
 .announcement p {
-    font-size: 1.25rem !important;
+    font-size: 1.3rem !important;
     margin-top: 0px;
     font-weight: 300;
     margin-bottom: 10px;
+    line-height: 1.5;
 }
 
 .container {
@@ -101,23 +102,10 @@ body {
 	margin: 0 auto;
 }
 
-.announcement h1 {
-	font-size: 1.8rem;
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-
-.announcement p {
-	margin: 10px 0;
-	line-height: 1.6;
-	font-size: 1rem;
-	padding: 0 10px;
-}
-
 .links {
 	display: flex;
 	justify-content: center;
-	gap: 60px;
+	gap: 70px;
 	flex-wrap: wrap;
 	margin: 20px 0;
 }
@@ -351,8 +339,7 @@ body {
 		}
 
 		.btn-link {
-			width: 90% !important;
-			max-width: 280px;
+            width: 100px;
 		}
 		
 		.hero-section::after {
@@ -366,10 +353,9 @@ body {
 
 .btn-link {
 	background-color: white;
-	padding: 4px;
-	border-radius: 10px;
-	width: 230px;
-	height: 40px;
+	border-radius: 15px;
+	width: 250px;
+	height: 60px;
 	transition: outline-width 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 	outline: 0px solid transparent;
 	outline-offset: -1px;
