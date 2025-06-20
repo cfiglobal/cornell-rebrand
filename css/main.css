@@ -704,6 +704,7 @@ footer {
 	border-bottom: 1px solid #eee;
 	cursor: pointer;
 	transition: background-color 0.2s;
+	text-align: left;
 }
 
 .location-item:hover {
