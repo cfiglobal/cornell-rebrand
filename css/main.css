@@ -406,11 +406,19 @@ body {
 	}
 
     .announcement h1 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
   
     .announcement p {
-      font-size: 0.95rem;
+      font-size: 0.85rem;
+    }
+    
+    .header-text {
+      font-size: 1.6rem;
+    }
+    
+    .header-text-larger {
+      font-size: 1.8rem;
     }
   
     .images img {
@@ -554,12 +562,20 @@ body {
 		}
 
 		.announcement h1 {
-			font-size: 1.3rem;
+			font-size: 1.1rem;
 		}
 
 		.announcement p {
-			font-size: 0.9rem;
+			font-size: 0.8rem;
 			padding: 0 5px;
+		}
+		
+		.header-text {
+			font-size: 1.4rem;
+		}
+		
+		.header-text-larger {
+			font-size: 1.6rem;
 		}
 
 		.links {
