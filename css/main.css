@@ -390,7 +390,7 @@ body {
 
 .btn-link:hover.cornell-border {
 	outline: 2px solid var(--cornell-blue);
-	box-shadow: 0 4px 12px rgba(0, 0, 128, 0.4);
+	box-shadow: 0 4px 12px rgba(100, 150, 255, 0.6);
 	transform: translateY(-3px);
 }
 
