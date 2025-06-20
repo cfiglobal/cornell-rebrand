@@ -26,11 +26,12 @@ function initializeMap() {
 }
 
 // Create custom MTQ yellow marker icon
-function createMTQMarkerIcon() {
+function createMTQMarkerIcon(isReman = false) {
+    const centerClass = isReman ? 'mtq-marker-pin-reman' : 'mtq-marker-pin';
     return L.divIcon({
         className: 'mtq-marker',
         html: `
-            <div class="mtq-marker-pin">
+            <div class="${centerClass}">
                 <div class="mtq-marker-inner"></div>
             </div>
         `,
@@ -105,6 +106,7 @@ function displayLocations(filteredLocations = null) {
             <p>${location.address}</p>
             <p>Ph ${location.phone}</p>
             <p>${location.email}</p>
+            ${location.reman ? '<p><span class="reman-dot"></span><strong>APAC Remanufacturing Centre</strong></p>' : ''}
         `;
         
         // Add click event to highlight location
@@ -124,7 +126,7 @@ function addMarkersToMap() {
     
     locations.forEach(location => {
         const marker = L.marker(location.coordinates, {
-            icon: createMTQMarkerIcon()
+            icon: createMTQMarkerIcon(location.reman)
         }).addTo(map);
         
         // Create popup content
@@ -134,6 +136,7 @@ function addMarkersToMap() {
                 <p><strong>Address:</strong> ${location.address}</p>
                 <p><strong>Phone:</strong> ${location.phone}</p>
                 <p><strong>Email:</strong> ${location.email}</p>
+                ${location.reman ? '<p><span class="reman-dot"></span><strong>APAC Remanufacturing Centre</strong></p>' : ''}
             </div>
         `;
         

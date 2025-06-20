@@ -30,7 +30,8 @@
       "address": "140 Robinson Road East, Geebung, QLD 4034",
       "phone": "07 3216 5866",
       "email": "geebung.sales@mtqes.com.au", 
-      "coordinates": [-27.370540, 153.054012]
+      "coordinates": [-27.370540, 153.054012],
+      "reman": true
     },
     {
       "id": 5,
@@ -62,7 +63,8 @@
       "address": "19-21 Technology Drive, Sunshine West, VIC 3020",
       "phone": "03 9267 8800",
       "email": "sunshine.sales@mtqes.com.au",
-      "coordinates": [-37.8158912, 144.8220062]
+      "coordinates": [-37.8158912, 144.8220062],
+      "reman": true
     },
     {
       "id": 9,
