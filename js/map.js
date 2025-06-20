@@ -21,6 +21,21 @@ function initializeMap() {
     }).addTo(map);
 }
 
+// Create custom MTQ yellow marker icon
+function createMTQMarkerIcon() {
+    return L.divIcon({
+        className: 'mtq-marker',
+        html: `
+            <div class="mtq-marker-pin">
+                <div class="mtq-marker-inner"></div>
+            </div>
+        `,
+        iconSize: [30, 42],
+        iconAnchor: [15, 42],
+        popupAnchor: [0, -42]
+    });
+}
+
 // Load locations from JSON file
 async function loadLocations() {
     try {
@@ -104,7 +119,9 @@ function addMarkersToMap() {
     markers = [];
     
     locations.forEach(location => {
-        const marker = L.marker(location.coordinates).addTo(map);
+        const marker = L.marker(location.coordinates, {
+            icon: createMTQMarkerIcon()
+        }).addTo(map);
         
         // Create popup content
         const popupContent = `
