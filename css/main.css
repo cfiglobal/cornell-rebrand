@@ -1,3 +1,7 @@
+html {
+	scroll-behavior: smooth;
+}
+
 :root {
 	--mtq-yellow: #F8C014;
 	--cornell-blue: #000080;
@@ -34,7 +38,7 @@ body {
     background: linear-gradient(to bottom, #0f0f0f, #2c2c2c);
     color: white;
     text-align: center;
-  }
+}
 
 .announcement h1 {
     font-size: 2.75rem !important;
