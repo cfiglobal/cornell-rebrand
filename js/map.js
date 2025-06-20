@@ -12,8 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialize Leaflet map
 function initializeMap() {
+    // Determine initial zoom level based on screen size
+    const isMobile = window.innerWidth <= 768;
+    const initialZoom = isMobile ? 4 : 5;
+    
     // Center map on Australia
-    map = L.map('map').setView([-25.2744, 133.7751], 5);
+    map = L.map('map').setView([-25.2744, 133.7751], initialZoom);
     
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
