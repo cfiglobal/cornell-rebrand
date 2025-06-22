@@ -317,22 +317,7 @@ body {
     margin-bottom: 15px;
   }
   
-/* Original brand logos layout - commented for carousel version
-  .brand-logos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-	align-items: center;
-    gap: 30px;
-    padding: 0 10px;
-    margin-top: 20px;
-  }
-  
-  .brand-logos img {
-	width: auto;
-	max-width: 120px;
-}
-*/
+/* Original brand logos layout - removed as no longer needed */
 
 /* JavaScript Carousel Brand Logos */
 .brand-logos {
@@ -356,55 +341,7 @@ body {
 	width: auto;
 }
 
-/* Original individual brand logo sizing - commented for carousel version
-.brand-logos img[src*="borgwarner"] {
-	height: calc(18px * var(--brand-logo-scale));
-}
-
-.brand-logos img[src*="bosch"] {
-	height: calc(45px * var(--brand-logo-scale));
-}
-
-.brand-logos img[src*="continental"] {
-	height: calc(35px * var(--brand-logo-scale));
-}
-
-.brand-logos img[src*="delphi"] {
-	height: calc(47px * var(--brand-logo-scale));
-}
-
-.brand-logos img[src*="denso"] {
-	height: calc(40px * var(--brand-logo-scale));
-}
-
-.brand-logos img[src*="garrett"] {
-	height: calc(40px * var(--brand-logo-scale));
-}
-
-.brand-logos img[src*="holset"] {
-	height: calc(52px * var(--brand-logo-scale));
-}
-
-.brand-logos img[src*="ihi"] {
-	height: calc(36px * var(--brand-logo-scale));
-}
-
-.brand-logos img[src*="mitsubishi"] {
-	height: calc(42px * var(--brand-logo-scale));
-}
-
-.brand-logos img[src*="stanadyne"] {
-	height: calc(45px * var(--brand-logo-scale));
-}
-
-.brand-logos img[src*="yanmar"] {
-	height: calc(45px * var(--brand-logo-scale));
-}
-
-.brand-logos img[src*="zexel"] {
-	height: calc(40px * var(--brand-logo-scale));
-}
-*/
+/* Original individual brand logo sizing - removed as no longer needed */
 
 /* Carousel individual brand logo sizing */
 .brand-carousel img[src*="borgwarner"] {
