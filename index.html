@@ -187,6 +187,35 @@
     window.addEventListener('hashchange', checkForCredits);
   </script>
 
+  <!-- Background Image Fade-in Script -->
+  <script>
+    // Preload and fade in background image
+    function initBackgroundFade() {
+      const heroSection = document.querySelector('.hero-section');
+      const backgroundImage = new Image();
+      
+      backgroundImage.onload = function() {
+        // Add class to trigger fade-in effect
+        heroSection.classList.add('background-loaded');
+      };
+      
+      backgroundImage.onerror = function() {
+        // If image fails to load, show background anyway (without the image)
+        heroSection.classList.add('background-loaded');
+      };
+      
+      // Start loading the background image
+      backgroundImage.src = 'assets/backgrounds/landing_background.webp';
+    }
+    
+    // Initialize background fade when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBackgroundFade);
+    } else {
+      initBackgroundFade();
+    }
+  </script>
+
   <!-- Back to Top Button Script -->
   <script>
     // Back to top button functionality
