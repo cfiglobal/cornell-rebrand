@@ -239,7 +239,7 @@ function createMTQMarkerIcon(isReman = false) {
 // Load locations from JSON file
 async function loadLocations() {
     try {
-        const response = await fetch('locations.json');
+        const response = await fetch('data/locations.json');
         const data = await response.json();
         locations = data.locations;
         
