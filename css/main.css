@@ -328,12 +328,34 @@ body {
 	padding: 20px 0;
 }
 
+.brand-logos::before,
+.brand-logos::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 40px;
+	z-index: 2;
+	pointer-events: none;
+}
+
+.brand-logos::before {
+	left: 0;
+	background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0.9) 40%, rgba(255, 255, 255, 0.3) 70%, transparent 100%);
+}
+
+.brand-logos::after {
+	right: 0;
+	background: linear-gradient(to left, #fff 0%, rgba(255, 255, 255, 0.9) 40%, rgba(255, 255, 255, 0.3) 70%, transparent 100%);
+}
+
 .brand-carousel {
 	display: flex;
 	align-items: center;
 	gap: 60px;
 	width: fit-content;
 	transition: none;
+	padding: 0 100px;
 }
 
 .brand-carousel img {
@@ -466,6 +488,13 @@ body {
 	/* Mobile carousel adjustments */
 	.brand-carousel {
 		gap: 40px;
+		padding: 0 50px;
+	}
+	
+	/* Remove fade effect on mobile for better clarity */
+	.brand-logos::before,
+	.brand-logos::after {
+		display: none;
 	}
 
 	.brand-carousel img[src*="borgwarner"] {
