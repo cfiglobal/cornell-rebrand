@@ -19,13 +19,15 @@ function initializeMap() {
     // Center map on Australia
     map = L.map('map', {
         scrollWheelZoom: false, // Disable default scroll wheel zoom
+        smoothWheelZoom: false, // Disable smooth wheel zoom
+        smoothSensitivity: 1.5, // Set sensitivity to 1
         dragging: !isMobile,    // Disable dragging on mobile initially
         tap: !isMobile         // Disable tap on mobile initially
     }).setView([-25.2744, 133.7751], initialZoom);
     
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
+        attribution: '© OpenStreetMap'
     }).addTo(map);
     
     // Disable context menu on map
@@ -101,7 +103,7 @@ function setupMobileInteraction(mapContainer) {
             // Two fingers - enable map interaction
             isTwoFingerInteraction = true;
             map.dragging.enable();
-            map.scrollWheelZoom.enable();
+            map.smoothWheelZoom.enable();
             map.doubleClickZoom.enable();
             hideOverlay();
             // Prevent default to stop page scrolling during map interaction
@@ -122,13 +124,13 @@ function setupMobileInteraction(mapContainer) {
             // All fingers lifted - disable map interaction after short delay
             setTimeout(() => {
                 map.dragging.disable();
-                map.scrollWheelZoom.disable();
+                map.smoothWheelZoom.disable();
                 isTwoFingerInteraction = false;
             }, 100);
         } else if (e.touches.length === 1 && isTwoFingerInteraction) {
             // Went from 2 fingers to 1 - disable map interaction
             map.dragging.disable();
-            map.scrollWheelZoom.disable();
+            map.smoothWheelZoom.disable();
             isTwoFingerInteraction = false;
         }
     });
@@ -174,7 +176,7 @@ function setupDesktopInteraction(mapContainer) {
         if (e.key === 'Control') {
             isCtrlPressed = true;
             if (isHoveringMap) {
-                map.scrollWheelZoom.enable();
+                map.smoothWheelZoom.enable();
                 hideOverlay();
             }
         }
@@ -183,7 +185,7 @@ function setupDesktopInteraction(mapContainer) {
     document.addEventListener('keyup', (e) => {
         if (e.key === 'Control') {
             isCtrlPressed = false;
-            map.scrollWheelZoom.disable();
+            map.smoothWheelZoom.disable();
         }
     });
     
@@ -191,14 +193,14 @@ function setupDesktopInteraction(mapContainer) {
     mapContainer.addEventListener('mouseenter', () => {
         isHoveringMap = true;
         if (isCtrlPressed) {
-            map.scrollWheelZoom.enable();
+            map.smoothWheelZoom.enable();
             hideOverlay();
         }
     });
     
     mapContainer.addEventListener('mouseleave', () => {
         isHoveringMap = false;
-        map.scrollWheelZoom.disable();
+        map.smoothWheelZoom.disable();
         hideOverlay();
     });
     
